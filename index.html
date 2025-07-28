@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的世界WZY Server - 无限可能的冒险世界</title>
+    <title>我的世界WZY Server - 探索无限可能</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script>
@@ -11,15 +11,14 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#22c55e', // 绿色主色调，符合Minecraft风格
-                        secondary: '#0f766e',
-                        accent: '#f59e0b',
-                        dark: '#1e293b',
-                        light: '#f8fafc'
+                        primary: '#2E7D32', // 主色调-绿色，代表自然和成长
+                        secondary: '#D84315', // 辅助色-橙色，代表活力和冒险
+                        dark: '#1A202C', // 深色背景
+                        light: '#F7FAFC', // 浅色文本
                     },
                     fontFamily: {
                         minecraft: ['Minecraft', 'sans-serif'],
-                        inter: ['Inter', 'sans-serif']
+                        inter: ['Inter', 'sans-serif'],
                     },
                 }
             }
@@ -33,10 +32,11 @@
             .text-shadow {
                 text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             }
-            .bg-minecraft {
-                background-image: url('https://picsum.photos/id/1/1920/1080');
-                background-size: cover;
-                background-position: center;
+            .text-shadow-lg {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
             }
             .animate-float {
                 animation: float 3s ease-in-out infinite;
@@ -46,74 +46,101 @@
                 50% { transform: translateY(-10px); }
                 100% { transform: translateY(0px); }
             }
+            .btn-glow {
+                box-shadow: 0 0 15px rgba(46, 125, 50, 0.6);
+            }
+            .btn-glow:hover {
+                box-shadow: 0 0 25px rgba(46, 125, 50, 0.8);
+            }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- 预加载字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- 模拟Minecraft字体 -->
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('https://fonts.cdnfonts.com/css/minecraft-4');
+            font-display: swap;
+        }
+    </style>
 </head>
-<body class="font-inter bg-light text-dark">
+<body class="font-inter bg-dark text-light min-h-screen flex flex-col">
     <!-- 导航栏 -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-dark/80 bg-blur">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#" class="flex items-center space-x-2">
-                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                    <i class="fa fa-cubes text-white text-xl"></i>
+                <div class="text-primary text-2xl">
+                    <i class="fa fa-cube"></i>
                 </div>
-                <span class="text-xl font-bold text-white text-shadow">WZY Server</span>
+                <span class="font-minecraft text-xl tracking-wider">WZY Server</span>
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="#home" class="text-white hover:text-primary transition-colors">首页</a>
-                <a href="#features" class="text-white hover:text-primary transition-colors">服务器特色</a>
-                <a href="#rules" class="text-white hover:text-primary transition-colors">服务器规则</a>
-                <a href="#gallery" class="text-white hover:text-primary transition-colors">游戏截图</a>
-                <a href="#join" class="text-white hover:text-primary transition-colors">加入我们</a>
+                <a href="#home" class="hover:text-primary transition-colors duration-300 font-medium">首页</a>
+                <a href="#features" class="hover:text-primary transition-colors duration-300 font-medium">服务器特色</a>
+                <a href="#gameplay" class="hover:text-primary transition-colors duration-300 font-medium">游戏玩法</a>
+                <a href="#gallery" class="hover:text-primary transition-colors duration-300 font-medium">精彩瞬间</a>
+                <a href="#rules" class="hover:text-primary transition-colors duration-300 font-medium">服务器规则</a>
+                <a href="#connect" class="hover:text-primary transition-colors duration-300 font-medium">加入我们</a>
             </div>
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-white focus:outline-none">
-                    <i class="fa fa-bars text-2xl"></i>
+                <button id="menu-toggle" class="text-light hover:text-primary transition-colors">
+                    <i class="fa fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
         <!-- 移动端菜单 -->
-        <div id="mobile-menu" class="hidden md:hidden bg-dark/95 backdrop-blur-md">
-            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
-                <a href="#home" class="text-white hover:text-primary transition-colors py-2">首页</a>
-                <a href="#features" class="text-white hover:text-primary transition-colors py-2">服务器特色</a>
-                <a href="#rules" class="text-white hover:text-primary transition-colors py-2">服务器规则</a>
-                <a href="#gallery" class="text-white hover:text-primary transition-colors py-2">游戏截图</a>
-                <a href="#join" class="text-white hover:text-primary transition-colors py-2">加入我们</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-dark/95 bg-blur">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#home" class="hover:text-primary transition-colors duration-300 py-2 border-b border-gray-800">首页</a>
+                <a href="#features" class="hover:text-primary transition-colors duration-300 py-2 border-b border-gray-800">服务器特色</a>
+                <a href="#gameplay" class="hover:text-primary transition-colors duration-300 py-2 border-b border-gray-800">游戏玩法</a>
+                <a href="#gallery" class="hover:text-primary transition-colors duration-300 py-2 border-b border-gray-800">精彩瞬间</a>
+                <a href="#rules" class="hover:text-primary transition-colors duration-300 py-2 border-b border-gray-800">服务器规则</a>
+                <a href="#connect" class="hover:text-primary transition-colors duration-300 py-2">加入我们</a>
             </div>
         </div>
     </nav>
 
     <!-- 英雄区域 -->
-    <section id="home" class="bg-minecraft min-h-screen flex items-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-dark/60 backdrop-blur-sm"></div>
-        <div class="container mx-auto px-4 py-20 relative z-10">
-            <div class="max-w-3xl">
-                <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-bold text-white leading-tight mb-4 text-shadow">
-                    我的世界<br>WZY Server
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- 背景视频/图片 -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark/40 to-dark"></div>
+            <img src="https://picsum.photos/id/15/1920/1080" alt="Minecraft风景" class="w-full h-full object-cover">
+        </div>
+        <div class="container mx-auto px-4 z-10 text-center">
+            <div class="animate-float">
+                <h1 class="font-minecraft text-[clamp(2.5rem,8vw,5rem)] text-light text-shadow-lg mb-6 tracking-wider">
+                    WZY Server
                 </h1>
-                <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 mb-8 max-w-2xl">
-                    加入我们的服务器，开启无限可能的冒险之旅！这里有友好的社区、丰富的玩法和独特的游戏体验，等待着你的探索。
+                <p class="text-[clamp(1.2rem,3vw,1.8rem)] text-light text-shadow mb-8 max-w-3xl mx-auto">
+                    探索无限可能，创造属于你的世界
                 </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#join" class="px-8 py-3 bg-primary hover:bg-primary/90 text-white font-semibold rounded-md transition-all transform hover:scale-105 shadow-lg">
-                        立即加入
+                <div class="flex flex-col sm:flex-row justify-center gap-4 mb-10">
+                    <a href="#connect" class="px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105 btn-glow">
+                        加入服务器
                     </a>
-                    <a href="#features" class="px-8 py-3 bg-transparent border-2 border-white hover:border-primary text-white hover:text-primary font-semibold rounded-md transition-all">
+                    <a href="#features" class="px-8 py-4 bg-transparent border-2 border-light hover:border-primary hover:text-primary text-white rounded-lg font-bold text-lg transition-all duration-300 transform hover:scale-105">
                         了解更多
                     </a>
                 </div>
-                <div class="mt-12">
-                    <div class="bg-dark/70 backdrop-blur-md p-4 rounded-lg inline-block">
-                        <div class="flex items-center gap-3">
-                            <i class="fa fa-server text-primary text-xl"></i>
-                            <div>
-                                <p class="text-white/70 text-sm">服务器地址</p>
-                                <p class="text-white font-mono font-semibold text-lg">play.wzy-server.com</p>
-                            </div>
-                            <button id="copy-address" class="px-3 py-1 bg-primary/20 hover:bg-primary/30 text-primary rounded text-sm transition-colors">
-                                <i class="fa fa-copy mr-1"></i>复制
+            </div>
+            <div class="bg-dark/70 bg-blur p-6 rounded-xl max-w-2xl mx-auto">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <i class="fa fa-users text-primary text-xl"></i>
+                        <span class="text-lg">在线人数: <span id="online-count" class="text-primary font-bold">24</span>/100</span>
+                    </div>
+                    <div class="w-full sm:w-px h-px sm:h-10 bg-gray-700"></div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa fa-server text-primary text-xl"></i>
+                        <div class="flex items-center">
+                            <span id="server-ip" class="text-lg">mc.wzyserver.com</span>
+                            <button id="copy-ip" class="ml-2 text-primary hover:text-primary/80 transition-colors">
+                                <i class="fa fa-copy"></i>
                             </button>
                         </div>
                     </div>
@@ -121,383 +148,456 @@
             </div>
         </div>
         <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#features" class="text-white/80 hover:text-white">
+            <a href="#features" class="text-light hover:text-primary transition-colors">
                 <i class="fa fa-angle-down text-3xl"></i>
             </a>
         </div>
     </section>
 
     <!-- 服务器特色 -->
-    <section id="features" class="py-20 bg-light">
+    <section id="features" class="py-20 bg-gradient-to-b from-dark to-dark/95">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">服务器特色</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">探索我们服务器的独特之处，这里有丰富的玩法和功能，让你的游戏体验更加精彩</p>
+                <h2 class="font-minecraft text-[clamp(2rem,5vw,3rem)] text-light text-shadow mb-4">服务器特色</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    我们的服务器拥有多种独特功能，为你提供前所未有的Minecraft体验
+                </p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- 特色卡片 1 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/110/600/400" alt="丰富的插件系统" class="w-full h-full object-cover">
+                <div class="bg-dark/50 border border-gray-800 rounded-xl p-6 transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 group">
+                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-colors">
+                        <i class="fa fa-rocket text-primary text-2xl"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fa fa-puzzle-piece text-primary text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">丰富的插件系统</h3>
-                        <p class="text-gray-600">我们拥有精心挑选的插件，提供领地保护、经济系统、RPG元素等丰富功能，让游戏体验更加多样化。</p>
-                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-light group-hover:text-primary transition-colors">高性能服务器</h3>
+                    <p class="text-gray-400">
+                        采用顶级硬件配置，确保服务器稳定运行，低延迟，让你享受流畅的游戏体验。
+                    </p>
                 </div>
 
                 <!-- 特色卡片 2 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/237/600/400" alt="活跃友好的社区" class="w-full h-full object-cover">
+                <div class="bg-dark/50 border border-gray-800 rounded-xl p-6 transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 group">
+                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-colors">
+                        <i class="fa fa-shield text-primary text-2xl"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fa fa-users text-primary text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">活跃友好的社区</h3>
-                        <p class="text-gray-600">加入我们友好的玩家社区，结交志同道合的朋友，一起探索、建造和冒险，共同创造美好回忆。</p>
-                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-light group-hover:text-primary transition-colors">严格的反作弊系统</h3>
+                    <p class="text-gray-400">
+                        我们使用先进的反作弊技术，确保游戏公平性，所有玩家都能在公平的环境中游戏。
+                    </p>
                 </div>
 
                 <!-- 特色卡片 3 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/160/600/400" alt="定期活动与奖励" class="w-full h-full object-cover">
+                <div class="bg-dark/50 border border-gray-800 rounded-xl p-6 transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 group">
+                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-colors">
+                        <i class="fa fa-users text-primary text-2xl"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fa fa-gift text-primary text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">定期活动与奖励</h3>
-                        <p class="text-gray-600">我们每周都会举办各种有趣的活动，包括建筑比赛、寻宝探险等，参与者有机会获得丰厚奖励。</p>
-                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-light group-hover:text-primary transition-colors">活跃友好的社区</h3>
+                    <p class="text-gray-400">
+                        加入我们活跃友好的社区，结交志同道合的朋友，一起探索和建造属于你们的世界。
+                    </p>
                 </div>
 
                 <!-- 特色卡片 4 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/177/600/400" alt="专业管理团队" class="w-full h-full object-cover">
+                <div class="bg-dark/50 border border-gray-800 rounded-xl p-6 transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 group">
+                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-colors">
+                        <i class="fa fa-magic text-primary text-2xl"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fa fa-shield text-primary text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">专业管理团队</h3>
-                        <p class="text-gray-600">我们拥有经验丰富的管理团队，确保游戏环境公平、和谐，为玩家提供优质的游戏体验。</p>
-                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-light group-hover:text-primary transition-colors">独特的插件系统</h3>
+                    <p class="text-gray-400">
+                        我们拥有精心挑选的插件，提供丰富的游戏玩法，包括自定义任务、领地保护等。
+                    </p>
                 </div>
 
                 <!-- 特色卡片 5 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/28/600/400" alt="自定义地图与建筑" class="w-full h-full object-cover">
+                <div class="bg-dark/50 border border-gray-800 rounded-xl p-6 transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 group">
+                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-colors">
+                        <i class="fa fa-diamond text-primary text-2xl"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fa fa-map text-primary text-xl"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2">自定义地图与建筑</h3>
-                        <p class="text-gray-600">探索我们精心设计的自定义地图和建筑，每个角落都充满惊喜和挑战，让你感受不一样的MC世界。</p>
-                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-light group-hover:text-primary transition-colors">丰富的经济系统</h3>
+                    <p class="text-gray-400">
+                        完善的经济系统，让你可以通过各种方式积累财富，购买稀有物品和领地。
+                    </p>
                 </div>
 
                 <!-- 特色卡片 6 -->
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform transition-all hover:scale-105 hover:shadow-xl">
-                    <div class="h-48 overflow-hidden">
-                        <img src="https://picsum.photos/id/191/600/400" alt="高性能服务器" class="w-full h-full object-cover">
+                <div class="bg-dark/50 border border-gray-800 rounded-xl p-6 transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/50 group">
+                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary/30 transition-colors">
+                        <i class="fa fa-comments text-primary text-2xl"></i>
                     </div>
-                    <div class="p-6">
-                        <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-                            <i class="fa fa-bolt text-primary text-xl"></i>
+                    <h3 class="text-xl font-bold mb-3 text-light group-hover:text-primary transition-colors">24/7 在线管理</h3>
+                    <p class="text-gray-400">
+                        我们的管理团队全天候在线，为你提供帮助和支持，确保游戏环境和谐。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 游戏玩法 -->
+    <section id="gameplay" class="py-20 bg-dark/95">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-minecraft text-[clamp(2rem,5vw,3rem)] text-light text-shadow mb-4">游戏玩法</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    我们提供多种游戏模式，满足不同玩家的需求
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 玩法卡片 1 -->
+                <div class="relative group overflow-hidden rounded-xl">
+                    <img src="https://picsum.photos/id/29/800/500" alt="生存模式" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h3 class="text-2xl font-bold mb-2 text-light group-hover:text-primary transition-colors">生存模式</h3>
+                        <p class="text-gray-300 mb-4">经典的Minecraft生存体验，探索、建造、战斗，在这个世界中生存下来。</p>
+                        <div class="flex items-center gap-2 text-sm text-gray-400">
+                            <i class="fa fa-users"></i>
+                            <span>48名玩家在线</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">高性能服务器</h3>
-                        <p class="text-gray-600">我们投资了顶级硬件设施，确保服务器稳定运行，低延迟、高流畅度，让你尽情享受游戏乐趣。</p>
                     </div>
                 </div>
+
+                <!-- 玩法卡片 2 -->
+                <div class="relative group overflow-hidden rounded-xl">
+                    <img src="https://picsum.photos/id/30/800/500" alt="创造模式" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h3 class="text-2xl font-bold mb-2 text-light group-hover:text-primary transition-colors">创造模式</h3>
+                        <p class="text-gray-300 mb-4">无限的资源，自由的创造，发挥你的想象力，建造任何你想要的东西。</p>
+                        <div class="flex items-center gap-2 text-sm text-gray-400">
+                            <i class="fa fa-users"></i>
+                            <span>26名玩家在线</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 玩法卡片 3 -->
+                <div class="relative group overflow-hidden rounded-xl">
+                    <img src="https://picsum.photos/id/31/800/500" alt="冒险模式" class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6 w-full">
+                        <h3 class="text-2xl font-bold mb-2 text-light group-hover:text-primary transition-colors">冒险模式</h3>
+                        <p class="text-gray-300 mb-4">充满挑战的冒险地图和任务，测试你的技能和智慧，赢取丰厚奖励。</p>
+                        <div class="flex items-center gap-2 text-sm text-gray-400">
+                            <i class="fa fa-users"></i>
+                            <span>32名玩家在线</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <a href="#" class="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
+                    <span>查看所有游戏模式</span>
+                    <i class="fa fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 精彩瞬间 -->
+    <section id="gallery" class="py-20 bg-dark">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-minecraft text-[clamp(2rem,5vw,3rem)] text-light text-shadow mb-4">精彩瞬间</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    看看我们玩家创造的惊人建筑和难忘时刻
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- 图片 1 -->
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://picsum.photos/id/16/500/500" alt="玩家建造的城堡" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <i class="fa fa-search-plus text-2xl text-light"></i>
+                    </div>
+                </div>
+
+                <!-- 图片 2 -->
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://picsum.photos/id/17/500/500" alt="壮观的自然风景" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <i class="fa fa-search-plus text-2xl text-light"></i>
+                    </div>
+                </div>
+
+                <!-- 图片 3 -->
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://picsum.photos/id/18/500/500" alt="玩家建造的城市" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <i class="fa fa-search-plus text-2xl text-light"></i>
+                    </div>
+                </div>
+
+                <!-- 图片 4 -->
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://picsum.photos/id/19/500/500" alt="海底基地" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <i class="fa fa-search-plus text-2xl text-light"></i>
+                    </div>
+                </div>
+
+                <!-- 图片 5 -->
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://picsum.photos/id/20/500/500" alt="空中城堡" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <i class="fa fa-search-plus text-2xl text-light"></i>
+                    </div>
+                </div>
+
+                <!-- 图片 6 -->
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://picsum.photos/id/21/500/500" alt="红石科技" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <i class="fa fa-search-plus text-2xl text-light"></i>
+                    </div>
+                </div>
+
+                <!-- 图片 7 -->
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://picsum.photos/id/22/500/500" alt="地下城探险" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <i class="fa fa-search-plus text-2xl text-light"></i>
+                    </div>
+                </div>
+
+                <!-- 图片 8 -->
+                <div class="relative group overflow-hidden rounded-lg cursor-pointer">
+                    <img src="https://picsum.photos/id/23/500/500" alt="末地城堡" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <i class="fa fa-search-plus text-2xl text-light"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 图片查看器模态框 -->
+            <div id="image-viewer" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center">
+                <button id="close-viewer" class="absolute top-6 right-6 text-2xl text-light hover:text-primary transition-colors">
+                    <i class="fa fa-times"></i>
+                </button>
+                <img id="viewed-image" src="" alt="大图预览" class="max-w-[90%] max-h-[90vh] object-contain">
             </div>
         </div>
     </section>
 
     <!-- 服务器规则 -->
-    <section id="rules" class="py-20 bg-gray-50">
+    <section id="rules" class="py-20 bg-gradient-to-b from-dark to-dark/95">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">服务器规则</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">为了维护良好的游戏环境，请所有玩家遵守以下规则</p>
+                <h2 class="font-minecraft text-[clamp(2rem,5vw,3rem)] text-light text-shadow mb-4">服务器规则</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    为了维护良好的游戏环境，请遵守以下规则
+                </p>
             </div>
 
             <div class="max-w-3xl mx-auto">
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mt-1 flex-shrink-0">
-                                <span class="text-primary font-bold">1</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-semibold mb-1">尊重他人</h3>
-                                <p class="text-gray-600">请尊重其他玩家和工作人员，禁止使用侮辱性、歧视性或攻击性语言，保持友好和礼貌。</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mt-1 flex-shrink-0">
-                                <span class="text-primary font-bold">2</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-semibold mb-1">禁止作弊与黑客行为</h3>
-                                <p class="text-gray-600">使用任何形式的作弊程序、外挂或黑客行为都是严格禁止的，一经发现将永久封禁。</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mt-1 flex-shrink-0">
-                                <span class="text-primary font-bold">3</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-semibold mb-1">禁止破坏他人建筑</h3>
-                                <p class="text-gray-600">未经允许，请勿破坏或窃取其他玩家的建筑和物品，尊重他人的劳动成果。</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mt-1 flex-shrink-0">
-                                <span class="text-primary font-bold">4</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-semibold mb-1">禁止垃圾信息与广告</h3>
-                                <p class="text-gray-600">请勿在游戏内发送垃圾信息、刷屏或宣传其他服务器，这将影响其他玩家的体验。</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mt-1 flex-shrink-0">
-                                <span class="text-primary font-bold">5</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-semibold mb-1">合理使用资源</h3>
-                                <p class="text-gray-600">请勿过度开采或破坏环境，保持服务器世界的平衡性和美观度，共同维护良好的游戏环境。</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mt-1 flex-shrink-0">
-                                <span class="text-primary font-bold">6</span>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-lg font-semibold mb-1">服从管理</h3>
-                                <p class="text-gray-600">请尊重服务器管理员的决定，如有问题或建议，请通过合适的渠道提出，避免在游戏内争吵。</p>
-                            </div>
-                        </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- 规则列表 1 -->
+                    <div class="bg-dark/50 border border-gray-800 rounded-xl p-6">
+                        <h3 class="text-xl font-bold mb-4 text-primary flex items-center">
+                            <span class="bg-primary/20 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                                <i class="fa fa-info"></i>
+                            </span>
+                            基本规则
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>尊重其他玩家，禁止使用侮辱性语言</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>禁止作弊、使用外挂或任何不公平的游戏方式</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>请勿在游戏中进行任何形式的广告宣传</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>禁止破坏其他玩家的建筑，除非得到允许</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>请勿滥用游戏机制或寻找漏洞</span>
+                            </li>
+                        </ul>
                     </div>
 
-                    <div class="mt-8 text-center">
-                        <p class="text-gray-600">违反以上规则可能会导致警告、禁言或封禁等处罚，具体情况由管理团队决定</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 游戏截图 -->
-    <section id="gallery" class="py-20 bg-light">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">游戏截图</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">探索我们服务器的精彩瞬间和壮观建筑</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
-                    <img src="https://picsum.photos/id/10/800/600" alt="服务器主城" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                        <div class="p-6">
-                            <h3 class="text-white font-bold text-xl mb-1">服务器主城</h3>
-                            <p class="text-white/80">我们精心设计的主城，充满创意和细节</p>
-                        </div>
+                    <!-- 规则列表 2 -->
+                    <div class="bg-dark/50 border border-gray-800 rounded-xl p-6">
+                        <h3 class="text-xl font-bold mb-4 text-primary flex items-center">
+                            <span class="bg-primary/20 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                                <i class="fa fa-gavel"></i>
+                            </span>
+                            行为准则
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>保持聊天内容适合所有年龄段</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>请勿过度刷屏或使用全大写字母</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>尊重管理员的决定，如有异议请礼貌沟通</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>禁止建造不当或冒犯性的建筑</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>不要在游戏中索要物品或OP权限</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
-                    <img src="https://picsum.photos/id/180/800/600" alt="自然风景" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                        <div class="p-6">
-                            <h3 class="text-white font-bold text-xl mb-1">自然风景</h3>
-                            <p class="text-white/80">壮观的山脉、河流和森林，等待你的探索</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
-                    <img src="https://picsum.photos/id/200/800/600" alt="玩家建筑" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                        <div class="p-6">
-                            <h3 class="text-white font-bold text-xl mb-1">玩家建筑</h3>
-                            <p class="text-white/80">玩家们创造的惊人建筑作品，展现无限创意</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
-                    <img src="https://picsum.photos/id/210/800/600" alt="地下要塞" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                        <div class="p-6">
-                            <h3 class="text-white font-bold text-xl mb-1">地下要塞</h3>
-                            <p class="text-white/80">充满挑战的地下要塞，危险与宝藏并存</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
-                    <img src="https://picsum.photos/id/225/800/600" alt="海底世界" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                        <div class="p-6">
-                            <h3 class="text-white font-bold text-xl mb-1">海底世界</h3>
-                            <p class="text-white/80">神秘的海底世界，等待勇敢者的探索</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="group relative overflow-hidden rounded-xl shadow-lg cursor-pointer">
-                    <img src="https://picsum.photos/id/230/800/600" alt="村庄与农场" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-gradient-to-t from-dark/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                        <div class="p-6">
-                            <h3 class="text-white font-bold text-xl mb-1">村庄与农场</h3>
-                            <p class="text-white/80">繁荣的村庄和农场，展现田园生活的美好</p>
-                        </div>
-                    </div>
+                <div class="mt-10 bg-dark/50 border border-gray-800 rounded-xl p-6">
+                    <h3 class="text-xl font-bold mb-4 text-primary flex items-center">
+                        <span class="bg-primary/20 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                            <i class="fa fa-exclamation-triangle"></i>
+                        </span>
+                        违规处罚
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        违反上述规则将根据情节轻重给予相应处罚，包括警告、禁言、临时封禁和永久封禁。
+                    </p>
+                    <p class="text-gray-300">
+                        管理员保留对未列出的不当行为进行处罚的权利。如果你对处罚有异议，可以通过论坛或 Discord 联系我们。
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 加入我们 -->
-    <section id="join" class="py-20 bg-primary/5">
-        <div class="container mx-auto px-4">
+    <section id="connect" class="py-20 bg-dark/90 relative overflow-hidden">
+        <!-- 背景装饰 -->
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-secondary/10 rounded-full blur-3xl"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-dark mb-4">加入我们</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">立即加入WZY Server，开启你的冒险之旅！下面是加入服务器的简单步骤</p>
+                <h2 class="font-minecraft text-[clamp(2rem,5vw,3rem)] text-light text-shadow mb-4">加入我们</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                    准备好开始你的冒险了吗？按照以下步骤加入我们的服务器
+                </p>
             </div>
 
-            <div class="max-w-5xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="space-y-8">
-                            <div class="flex">
-                                <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
-                                    1
-                                </div>
-                                <div class="ml-4">
-                                    <h3 class="text-xl font-bold mb-2">拥有我的世界游戏</h3>
-                                    <p class="text-gray-600">确保你已经购买并安装了《我的世界》Java版，这是连接我们服务器的必要条件。</p>
-                                </div>
-                            </div>
-
-                            <div class="flex">
-                                <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
-                                    2
-                                </div>
-                                <div class="ml-4">
-                                    <h3 class="text-xl font-bold mb-2">打开游戏并进入多人游戏</h3>
-                                    <p class="text-gray-600">启动游戏后，点击主菜单中的"多人游戏"选项，进入服务器列表界面。</p>
-                                </div>
-                            </div>
-
-                            <div class="flex">
-                                <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
-                                    3
-                                </div>
-                                <div class="ml-4">
-                                    <h3 class="text-xl font-bold mb-2">添加服务器</h3>
-                                    <p class="text-gray-600">在多人游戏界面，点击"添加服务器"按钮，在服务器名称中输入"WZY Server"，服务器地址中输入"play.wzy-server.com"。</p>
-                                </div>
-                            </div>
-
-                            <div class="flex">
-                                <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
-                                    4
-                                </div>
-                                <div class="ml-4">
-                                    <h3 class="text-xl font-bold mb-2">连接并开始游戏</h3>
-                                    <p class="text-gray-600">添加完成后，选择我们的服务器并点击"加入服务器"，等待连接成功后即可开始你的冒险之旅！</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-10">
-                            <div class="bg-white rounded-xl shadow-lg p-6">
-                                <h3 class="text-xl font-bold mb-4 flex items-center">
-                                    <i class="fa fa-comments text-primary mr-2"></i> 加入我们的Discord社区
-                                </h3>
-                                <p class="text-gray-600 mb-4">除了游戏内交流，我们还拥有活跃的Discord社区，加入我们获取最新消息、参与讨论并与其他玩家互动。</p>
-                                <a href="#" class="inline-block px-6 py-2 bg-primary hover:bg-primary/90 text-white font-semibold rounded-md transition-colors">
-                                    <i class="fa fa-discord mr-2"></i> 加入Discord
-                                </a>
-                            </div>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- 步骤 1 -->
+                <div class="bg-dark/60 border border-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/50">
+                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-download text-primary text-2xl"></i>
                     </div>
+                    <h3 class="text-xl font-bold mb-3 text-light">1. 下载游戏</h3>
+                    <p class="text-gray-400">
+                        首先需要下载并安装 Minecraft Java Edition。你可以从 Mojang 官方网站购买并下载游戏。
+                    </p>
+                    <a href="https://www.minecraft.net/" target="_blank" class="mt-4 inline-block text-primary hover:text-primary/80 transition-colors">
+                        访问官网 <i class="fa fa-external-link ml-1"></i>
+                    </a>
+                </div>
 
-                    <div class="bg-white rounded-xl shadow-xl p-8 relative overflow-hidden">
-                        <div class="absolute -right-12 -top-12 w-40 h-40 bg-primary/10 rounded-full"></div>
-                        <div class="absolute -left-16 -bottom-16 w-48 h-48 bg-primary/5 rounded-full"></div>
+                <!-- 步骤 2 -->
+                <div class="bg-dark/60 border border-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/50">
+                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-server text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-light">2. 添加服务器</h3>
+                    <p class="text-gray-400">
+                        打开游戏，点击"多人游戏"，然后点击"添加服务器"。在服务器地址栏中输入：
+                    </p>
+                    <div class="mt-4 bg-dark/80 border border-gray-700 rounded-lg p-3 flex items-center justify-center">
+                        <span id="ip-display" class="font-mono text-primary">mc.wzyserver.com</span>
+                        <button id="copy-ip2" class="ml-3 text-primary hover:text-primary/80 transition-colors">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
 
-                        <h3 class="text-2xl font-bold mb-6 relative z-10">服务器状态</h3>
-                        
-                        <div class="space-y-6 relative z-10">
-                            <div class="flex items-center justify-between">
-                                <span class="text-gray-600">在线玩家</span>
-                                <span class="font-semibold">24 / 100</span>
-                            </div>
-                            <div class="w-full bg-gray-200 rounded-full h-2.5">
-                                <div class="bg-primary h-2.5 rounded-full" style="width: 24%"></div>
-                            </div>
+                <!-- 步骤 3 -->
+                <div class="bg-dark/60 border border-gray-800 rounded-xl p-6 text-center transform transition-all duration-300 hover:-translate-y-2 hover:border-primary/50">
+                    <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fa fa-play text-primary text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-light">3. 开始游戏</h3>
+                    <p class="text-gray-400">
+                        添加成功后，选择我们的服务器并点击"加入服务器"。等待加载完成，开始你的冒险之旅！
+                    </p>
+                    <div class="mt-4 flex justify-center">
+                        <button id="connect-btn" class="px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold transition-all duration-300 transform hover:scale-105 btn-glow">
+                            立即加入
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-                            <div class="flex items-center justify-between">
-                                <span class="text-gray-600">服务器版本</span>
-                                <span class="font-semibold">1.19.4</span>
-                            </div>
-
-                            <div class="flex items-center justify-between">
-                                <span class="text-gray-600">延迟</span>
-                                <span class="font-semibold">25ms</span>
-                            </div>
-
-                            <div class="flex items-center justify-between">
-                                <span class="text-gray-600">服务器地址</span>
-                                <div class="flex items-center">
-                                    <span class="font-mono font-semibold mr-2">play.wzy-server.com</span>
-                                    <button id="copy-address-2" class="px-2 py-1 bg-primary/10 hover:bg-primary/20 text-primary rounded text-sm transition-colors">
-                                        <i class="fa fa-copy"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mt-8 relative z-10">
-                            <h4 class="font-semibold mb-3">活跃玩家</h4>
-                            <div class="grid grid-cols-2 gap-3">
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0"></div>
-                                    <span class="ml-2">Player123</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0"></div>
-                                    <span class="ml-2">Builder456</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0"></div>
-                                    <span class="ml-2">Adventure789</span>
-                                </div>
-                                <div class="flex items-center">
-                                    <div class="w-8 h-8 rounded-full bg-gray-200 flex-shrink-0"></div>
-                                    <span class="ml-2">Survivalist</span>
-                                </div>
-                            </div>
-                        </div>
+            <div class="mt-16 bg-dark/60 border border-gray-800 rounded-xl p-8 max-w-3xl mx-auto">
+                <h3 class="text-2xl font-bold mb-6 text-light text-center">系统要求</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-3 text-primary">最低配置</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>操作系统: Windows 7/8/10, macOS 10.12+, Linux</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>处理器: Intel Core i3/AMD equivalent</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>内存: 4 GB RAM</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>显卡: Intel HD Graphics 4000</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>存储空间: 1 GB 可用空间</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-3 text-primary">推荐配置</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>操作系统: Windows 10, macOS 10.13+, Linux</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>处理器: Intel Core i5/AMD equivalent</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>内存: 8 GB RAM 或更高</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>显卡: NVIDIA GeForce GTX 960 或更高</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>存储空间: 2 GB 可用空间</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -505,17 +605,19 @@
     </section>
 
     <!-- 页脚 -->
-    <footer class="bg-dark text-white py-12">
+    <footer class="bg-dark py-12 border-t border-gray-900">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                            <i class="fa fa-cubes text-white text-xl"></i>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="text-primary text-2xl">
+                            <i class="fa fa-cube"></i>
                         </div>
-                        <span class="text-xl font-bold">WZY Server</span>
+                        <span class="font-minecraft text-xl tracking-wider">WZY Server</span>
                     </div>
-                    <p class="text-gray-400 mb-4">一个充满活力和创意的我的世界服务器，提供丰富的游戏体验和友好的社区环境。</p>
+                    <p class="text-gray-400 mb-6">
+                        探索无限可能，创造属于你的世界。加入我们的 Minecraft 服务器，开启你的冒险之旅！
+                    </p>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-primary transition-colors">
                             <i class="fa fa-discord text-xl"></i>
@@ -533,67 +635,81 @@
                 </div>
 
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">快速链接</h4>
+                    <h4 class="text-lg font-bold mb-4 text-light">快速链接</h4>
                     <ul class="space-y-2">
                         <li><a href="#home" class="text-gray-400 hover:text-primary transition-colors">首页</a></li>
                         <li><a href="#features" class="text-gray-400 hover:text-primary transition-colors">服务器特色</a></li>
+                        <li><a href="#gameplay" class="text-gray-400 hover:text-primary transition-colors">游戏玩法</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-primary transition-colors">精彩瞬间</a></li>
                         <li><a href="#rules" class="text-gray-400 hover:text-primary transition-colors">服务器规则</a></li>
-                        <li><a href="#gallery" class="text-gray-400 hover:text-primary transition-colors">游戏截图</a></li>
-                        <li><a href="#join" class="text-gray-400 hover:text-primary transition-colors">加入我们</a></li>
+                        <li><a href="#connect" class="text-gray-400 hover:text-primary transition-colors">加入我们</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">帮助与支持</h4>
+                    <h4 class="text-lg font-bold mb-4 text-light">帮助支持</h4>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">常见问题</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">联系我们</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">捐赠支持</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">管理员申请</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">举报玩家</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">服务器状态</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-primary transition-colors">捐赠支持</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-lg font-semibold mb-4">联系我们</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-center">
-                            <i class="fa fa-envelope text-primary mr-2"></i>
-                            <span class="text-gray-400">contact@wzy-server.com</span>
+                    <h4 class="text-lg font-bold mb-4 text-light">联系我们</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fa fa-envelope text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">contact@wzyserver.com</span>
                         </li>
-                        <li class="flex items-center">
-                            <i class="fa fa-server text-primary mr-2"></i>
-                            <span class="text-gray-400">play.wzy-server.com</span>
+                        <li class="flex items-start">
+                            <i class="fa fa-server text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">mc.wzyserver.com</span>
                         </li>
-                        <li class="flex items-center">
-                            <i class="fa fa-map-marker text-primary mr-2"></i>
-                            <span class="text-gray-400">中国，上海</span>
+                        <li class="flex items-start">
+                            <i class="fa fa-clock-o text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">24/7 在线</span>
                         </li>
                     </ul>
+                    <div class="mt-6">
+                        <h4 class="text-lg font-bold mb-3 text-light">服务器状态</h4>
+                        <div class="flex items-center">
+                            <div id="status-indicator" class="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
+                            <span id="server-status" class="text-gray-400">在线 - 24 名玩家</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-500 text-sm">© 2025 WZY Server. 保留所有权利。</p>
-                <div class="flex space-x-4 mt-4 md:mt-0">
-                    <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors">隐私政策</a>
-                    <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors">服务条款</a>
-                    <a href="#" class="text-gray-500 hover:text-primary text-sm transition-colors">Cookie政策</a>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-400 text-sm">隐私政策</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-400 text-sm">服务条款</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-400 text-sm">Cookie 政策</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary hover:bg-primary/90 text-white w-12 h-12 rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 z-40">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
     <script>
         // 导航栏滚动效果
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('bg-dark/90', 'backdrop-blur-md', 'shadow-lg');
-                navbar.classList.remove('bg-transparent');
+                navbar.classList.add('py-2', 'bg-dark/90');
+                navbar.classList.remove('py-3', 'bg-dark/80');
             } else {
-                navbar.classList.remove('bg-dark/90', 'backdrop-blur-md', 'shadow-lg');
-                navbar.classList.add('bg-transparent');
+                navbar.classList.add('py-3', 'bg-dark/80');
+                navbar.classList.remove('py-2', 'bg-dark/90');
             }
         });
 
@@ -623,54 +739,94 @@
             });
         });
 
-        // 复制服务器地址
-        const copyAddress = document.getElementById('copy-address');
-        const copyAddress2 = document.getElementById('copy-address-2');
-        const serverAddress = 'play.wzy-server.com';
+        // 图片查看器
+        const galleryImages = document.querySelectorAll('#gallery .grid img');
+        const imageViewer = document.getElementById('image-viewer');
+        const viewedImage = document.getElementById('viewed-image');
+        const closeViewer = document.getElementById('close-viewer');
 
-        function copyToClipboard(element) {
-            navigator.clipboard.writeText(serverAddress).then(() => {
-                const originalText = element.innerHTML;
-                element.innerHTML = '<i class="fa fa-check mr-1"></i>已复制';
-                element.classList.add('bg-green-100', 'text-green-600');
-                setTimeout(() => {
-                    element.innerHTML = originalText;
-                    element.classList.remove('bg-green-100', 'text-green-600');
-                }, 2000);
-            }).catch(err => {
-                console.error('复制失败: ', err);
-                element.innerHTML = '<i class="fa fa-times mr-1"></i>失败';
-                element.classList.add('bg-red-100', 'text-red-600');
-                setTimeout(() => {
-                    element.innerHTML = '<i class="fa fa-copy mr-1"></i>复制';
-                    element.classList.remove('bg-red-100', 'text-red-600');
-                }, 2000);
+        galleryImages.forEach(image => {
+            image.addEventListener('click', () => {
+                viewedImage.src = image.src.replace('/500/500', '/1200/1200');
+                imageViewer.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
             });
-        }
+        });
 
-        copyAddress.addEventListener('click', () => copyToClipboard(copyAddress));
-        copyAddress2.addEventListener('click', () => copyToClipboard(copyAddress2));
+        closeViewer.addEventListener('click', () => {
+            imageViewer.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
 
-        // 图片懒加载
-        document.addEventListener("DOMContentLoaded", function() {
-            const lazyImages = [].slice.call(document.querySelectorAll("img"));
-            
-            if ("IntersectionObserver" in window) {
-                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            let lazyImage = entry.target;
-                            lazyImage.classList.add("fade-in");
-                            lazyImageObserver.unobserve(lazyImage);
-                        }
-                    });
-                });
-                
-                lazyImages.forEach(function(lazyImage) {
-                    lazyImageObserver.observe(lazyImage);
+        // 复制IP地址
+        const copyIpButtons = [
+            document.getElementById('copy-ip'),
+            document.getElementById('copy-ip2')
+        ];
+        const ipAddress = 'mc.wzyserver.com';
+
+        copyIpButtons.forEach(button => {
+            if (button) {
+                button.addEventListener('click', () => {
+                    navigator.clipboard.writeText(ipAddress)
+                        .then(() => {
+                            const originalText = button.innerHTML;
+                            button.innerHTML = '<i class="fa fa-check"></i>';
+                            setTimeout(() => {
+                                button.innerHTML = originalText;
+                            }, 2000);
+                        })
+                        .catch(err => {
+                            console.error('无法复制文本: ', err);
+                        });
                 });
             }
         });
+
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 连接按钮动画
+        const connectBtn = document.getElementById('connect-btn');
+        if (connectBtn) {
+            connectBtn.addEventListener('click', () => {
+                connectBtn.classList.add('animate-pulse');
+                setTimeout(() => {
+                    connectBtn.classList.remove('animate-pulse');
+                }, 1000);
+            });
+        }
+
+        // 在线人数动态变化模拟
+        function updateOnlineCount() {
+            const onlineCount = document.getElementById('online-count');
+            if (onlineCount) {
+                const currentCount = parseInt(onlineCount.textContent);
+                const change = Math.floor(Math.random() * 5) - 2; // -2 到 2 之间的随机数
+                let newCount = currentCount + change;
+                newCount = Math.max(10, Math.min(95, newCount)); // 保持在 10-95 之间
+                onlineCount.textContent = newCount;
+            }
+        }
+
+        // 每隔一段时间更新在线人数
+        setInterval(updateOnlineCount, 8000);
     </script>
 </body>
 </html>
