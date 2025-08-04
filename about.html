@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 - WZY Server</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#FFC107',
+                        dark: '#1E293B',
+                        light: '#F8FAFC',
+                        accent: '#8B5CF6',
+                    },
+                    fontFamily: {
+                        minecraft: ['"Press Start 2P"', 'cursive'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .bg-minecraft-pattern {
+                background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234caf50' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            }
+        }
+    </style>
+    
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-dark text-light bg-minecraft-pattern">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center bg-dark/80 backdrop-blur-md">
+            <div class="flex items-center space-x-2">
+                <img src="assets/images/logo.png" alt="WZY Server Logo" class="w-10 h-10 rounded-lg">
+                <span class="font-minecraft text-primary text-lg md:text-xl">WZY Server</span>
+            </div>
+            
+            <!-- 桌面导航 -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="font-medium text-light hover:text-primary transition-colors">首页</a>
+                <a href="about.html" class="font-medium text-primary transition-colors">关于我们</a>
+                <a href="features.html" class="font-medium text-light hover:text-primary transition-colors">特色玩法</a>
+                <a href="rules.html" class="font-medium text-light hover:text-primary transition-colors">服务器规则</a>
+                <a href="status.html" class="font-medium text-light hover:text-primary transition-colors">服务器状态</a>
+                <a href="join.html" class="bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded-md transition-all transform hover:scale-105">加入我们</a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-light text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark/95 backdrop-blur-md">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html" class="font-medium text-light hover:text-primary transition-colors py-2">首页</a>
+                <a href="about.html" class="font-medium text-primary transition-colors py-2">关于我们</a>
+                <a href="features.html" class="font-medium text-light hover:text-primary transition-colors py-2">特色玩法</a>
+                <a href="rules.html" class="font-medium text-light hover:text-primary transition-colors py-2">服务器规则</a>
+                <a href="status.html" class="font-medium text-light hover:text-primary transition-colors py-2">服务器状态</a>
+                <a href="join.html" class="bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded-md text-center transition-all">加入我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="relative py-24 bg-dark">
+        <div class="absolute inset-0 z-0">
+            <img src="assets/images/banner1.jpg" alt="我的世界背景" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark/90 to-dark"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="font-minecraft text-[clamp(1.8rem,4vw,3rem)] text-primary mb-4 text-shadow">关于 WZY Server</h1>
+            <p class="text-light/70 max-w-3xl">了解我们的服务器历史、团队和愿景</p>
+        </div>
+    </section>
+
+    <!-- 关于内容 -->
+    <section class="py-16 bg-dark">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-2xl font-bold mb-6 text-primary">我们的故事</h2>
+                    <p class="text-light/80 mb-4">
+                        WZY Server 始于2022年，由一群热爱我的世界的玩家共同创立。我们发现很多服务器要么商业化过重，要么管理混乱，缺乏真正以玩家体验为中心的社区氛围。
+                    </p>
+                    <p class="text-light/80 mb-4">
+                        因此，我们决定创建一个真正属于玩家的服务器，在这里，创意得到尊重，公平得到维护，社区成员能够共同成长。经过不断的改进和完善，WZY Server 已经发展成为一个拥有多种游戏模式和活跃社区的综合性服务器。
+                    </p>
+                    <p class="text-light/80">
+                        我们的目标是打造一个长期稳定运行的服务器，让每一位玩家都能在这里找到属于自己的乐趣，结交志同道合的朋友，共同创造难忘的游戏回忆。
+                    </p>
+                </div>
+                
+                <div class="rounded-lg overflow-hidden border border-primary/20">
+                    <img src="assets/images/minecraft1.jpg" alt="WZY Server 游戏场景" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 我们的团队 -->
+    <section class="py-16 bg-dark/80">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-minecraft text-[clamp(1.5rem,3vw,2.5rem)] text-primary mb-4">我们的团队</h2>
+                <div class="w-32 h-1 bg-primary mx-auto mb-6"></div>
+                <p class="text-light/70 max-w-2xl mx-auto">
+                    由一群热情的我的世界玩家组成的团队，致力于为大家提供最好的游戏体验
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-dark/60 rounded-lg p-6 text-center border border-primary/20 hover:border-primary/50 transition-all">
+                    <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-primary">
+                        <img src="assets/images/头像.jpg" alt="管理员头像" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg mb-1">wang_zi_yuan</h3>
+                    <p class="text-primary text-sm mb-3">腐竹 (创始人)</p>
+                    <p class="text-light/70 text-sm">
+                        服务器创始人，负责整体运营和决策，热爱红石电路和建筑。
+                    </p>
+                </div>
+                
+                <div class="bg-dark/60 rounded-lg p-6 text-center border border-primary/20 hover:border-primary/50 transition-all">
+                    <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-primary">
+                        <img src="assets/images/AI头像 (1).png" alt="管理员头像" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg mb-1">wang_ze_yu</h3>
+                    <p class="text-primary text-sm mb-3">建筑大师</p>
+                    <p class="text-light/70 text-sm">
+                        负责服务器建筑设计和地图创作，拥有丰富的建筑经验。
+                    </p>
+                </div>
+                
+                <div class="bg-dark/60 rounded-lg p-6 text-center border border-primary/20 hover:border-primary/50 transition-all">
+                    <div class="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-primary">
+                        <img src="assets/images/AI头像 (2).png" alt="管理员头像" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg mb-1">Minecraft_wang</h3>
+                    <p class="text-primary text-sm mb-3">技术支持</p>
+                    <p class="text-light/70 text-sm">
+                        负责服务器维护和插件开发，解决各种技术问题。
+                    </p>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务器数据 -->
+    <section class="py-16 bg-dark">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="font-minecraft text-[clamp(1.5rem,3vw,2.5rem)] text-primary mb-4">服务器数据</h2>
+                <div class="w-32 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-dark/60 rounded-lg p-6 text-center border border-primary/20">
+                    <div class="text-4xl font-bold text-primary mb-2" id="total-players">15,842</div>
+                    <p class="text-light/70">注册玩家</p>
+                </div>
+                
+                <div class="bg-dark/60 rounded-lg p-6 text-center border border-primary/20">
+                    <div class="text-4xl font-bold text-primary mb-2" id="server-age">786</div>
+                    <p class="text-light/70">运行天数</p>
+                </div>
+                
+                <div class="bg-dark/60 rounded-lg p-6 text-center border border-primary/20">
+                    <div class="text-4xl font-bold text-primary mb-2" id="builds-count">1,245</div>
+                    <p class="text-light/70">玩家建筑</p>
+                </div>
+                
+                <div class="bg-dark/60 rounded-lg p-6 text-center border border-primary/20">
+                    <div class="text-4xl font-bold text-primary mb-2" id="events-count">87</div>
+                    <p class="text-light/70">举办活动</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 加入我们的社区 -->
+    <section class="py-16 bg-primary/10">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="font-minecraft text-[clamp(1.5rem,3vw,2.5rem)] text-primary mb-6">加入我们的社区</h2>
+            <p class="text-light/80 max-w-2xl mx-auto mb-8">
+                无论你是建筑大师、红石专家还是探险爱好者，WZY Server 都欢迎你的加入。在这里，你可以展示你的创意，结交新朋友，一起探索无限可能。
+            </p>
+            <a href="join.html" class="bg-primary hover:bg-primary/80 text-white px-6 py-3 rounded-md font-medium text-lg transition-all transform hover:scale-105 shadow-lg hover:shadow-primary/30 inline-block">
+                立即加入服务器
+            </a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark py-8 border-t border-primary/20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <img src="assets/images/logo.png" alt="WZY Server Logo" class="w-8 h-8 rounded-lg">
+                        <span class="font-minecraft text-primary text-sm">WZY Server</span>
+                    </div>
+                    <p class="text-light/60 text-sm mt-2">© 2023 WZY Server. 保留所有权利</p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="text-light/60 hover:text-primary transition-colors">
+                        <i class="fa fa-discord text-xl"></i>
+                    </a>
+                    <a href="#" class="text-light/60 hover:text-primary transition-colors">
+                        <i class="fa fa-qq text-xl"></i>
+                    </a>
+                    <a href="#" class="text-light/60 hover:text-primary transition-colors">
+                        <i class="fa fa-weixin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-6 pt-6 border-t border-primary/10 text-center text-light/50 text-sm">
+                <p>本服务器与Mojang AB无任何关联，Minecraft是Mojang AB的商标</p>
+                <div class="mt-2">
+                    <a href="admin/login.html" class="hover:text-primary transition-colors">管理员登录</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 数字增长动画
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            if (!obj) return;
+            
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                
+                // 添加千位分隔符
+                obj.textContent = value.toLocaleString();
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // 当元素进入视口时触发动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.id === 'total-players') {
+                        animateValue('total-players', 0, 15842, 2000);
+                    } else if (entry.target.id === 'server-age') {
+                        animateValue('server-age', 0, 786, 2000);
+                    } else if (entry.target.id === 'builds-count') {
+                        animateValue('builds-count', 0, 1245, 2000);
+                    } else if (entry.target.id === 'events-count') {
+                        animateValue('events-count', 0, 87, 2000);
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // 观察所有需要动画的元素
+        document.querySelectorAll('#total-players, #server-age, #builds-count, #events-count').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

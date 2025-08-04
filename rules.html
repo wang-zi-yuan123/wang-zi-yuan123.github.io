@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服务器规则 - WZY Server</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#FFC107',
+                        dark: '#1E293B',
+                        light: '#F8FAFC',
+                        danger: '#EF4444',
+                    },
+                    fontFamily: {
+                        minecraft: ['"Press Start 2P"', 'cursive'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .bg-minecraft-pattern {
+                background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234caf50' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            }
+        }
+    </style>
+    
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-dark text-light bg-minecraft-pattern">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center bg-dark/80 backdrop-blur-md">
+            <div class="flex items-center space-x-2">
+                <img src="assets/images/logo.png" alt="WZY Server Logo" class="w-10 h-10 rounded-lg">
+                <span class="font-minecraft text-primary text-lg md:text-xl">WZY Server</span>
+            </div>
+            
+            <!-- 桌面导航 -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="font-medium text-light hover:text-primary transition-colors">首页</a>
+                <a href="about.html" class="font-medium text-light hover:text-primary transition-colors">关于我们</a>
+                <a href="features.html" class="font-medium text-light hover:text-primary transition-colors">特色玩法</a>
+                <a href="rules.html" class="font-medium text-primary transition-colors">服务器规则</a>
+                <a href="status.html" class="font-medium text-light hover:text-primary transition-colors">服务器状态</a>
+                <a href="join.html" class="bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded-md transition-all transform hover:scale-105">加入我们</a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-light text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark/95 backdrop-blur-md">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html" class="font-medium text-light hover:text-primary transition-colors py-2">首页</a>
+                <a href="about.html" class="font-medium text-light hover:text-primary transition-colors py-2">关于我们</a>
+                <a href="features.html" class="font-medium text-light hover:text-primary transition-colors py-2">特色玩法</a>
+                <a href="rules.html" class="font-medium text-primary transition-colors py-2">服务器规则</a>
+                <a href="status.html" class="font-medium text-light hover:text-primary transition-colors py-2">服务器状态</a>
+                <a href="join.html" class="bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded-md text-center transition-all">加入我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="relative py-24 bg-dark">
+        <div class="absolute inset-0 z-0">
+            <img src="assets/images/banner1.jpg" alt="我的世界背景" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark/90 to-dark"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="font-minecraft text-[clamp(1.8rem,4vw,3rem)] text-primary mb-4 text-shadow">服务器规则</h1>
+            <p class="text-light/70 max-w-3xl">所有玩家必须遵守的规则，确保服务器的公平和友好环境</p>
+        </div>
+    </section>
+
+    <!-- 规则内容 -->
+    <section class="py-16 bg-dark">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-dark/60 rounded-lg p-6 border border-danger/30 mb-10">
+                    <div class="flex items-start">
+                        <div class="text-danger mr-4 mt-1">
+                            <i class="fa fa-exclamation-triangle text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-danger mb-2">重要提示</h3>
+                            <p class="text-light/80 text-sm">
+                                所有玩家在加入服务器前必须阅读并同意以下规则。违反规则将根据情节轻重受到警告、禁言、临时封禁或永久封禁的处罚。管理员拥有最终解释权和裁决权。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+                        <i class="fa fa-user text-lg mr-2"></i> 基本行为准则
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-dark/60 rounded-lg p-5 border border-primary/20">
+                            <h3 class="font-bold mb-2 flex items-center">
+                                <span class="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-sm mr-2">1</span>
+                                尊重他人
+                            </h3>
+                            <p class="text-light/80 ml-8">
+                                尊重所有玩家和管理员，不进行人身攻击、辱骂、歧视或骚扰。禁止发布任何不适当、冒犯性或仇恨性内容。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-dark/60 rounded-lg p-5 border border-primary/20">
+                            <h3 class="font-bold mb-2 flex items-center">
+                                <span class="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-sm mr-2">2</span>
+                                禁止作弊
+                            </h3>
+                            <p class="text-light/80 ml-8">
+                                严禁使用任何作弊软件、黑客工具、漏洞或第三方程序获取不公平优势，包括但不限于飞行、透视、自动瞄准等。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-dark/60 rounded-lg p-5 border border-primary/20">
+                            <h3 class="font-bold mb-2 flex items-center">
+                                <span class="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-sm mr-2">3</span>
+                                禁止广告
+                            </h3>
+                            <p class="text-light/80 ml-8">
+                                禁止发布任何形式的广告，包括其他服务器、社交媒体账号、商业产品等，除非获得管理员明确许可。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-dark/60 rounded-lg p-5 border border-primary/20">
+                            <h3 class="font-bold mb-2 flex items-center">
+                                <span class="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-sm mr-2">4</span>
+                                保护隐私
+                            </h3>
+                            <p class="text-light/80 ml-8">
+                                禁止泄露或分享其他玩家的个人信息，包括真实姓名、地址、电话号码、邮箱等隐私内容。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+                        <i class="fa fa-gamepad text-lg mr-2"></i> 游戏内规则
+                    </h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-dark/60 rounded-lg p-5 border border-primary/20">
+                            <h3 class="font-bold mb-2 flex items-center">
+                                <span class="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-sm mr-2">1</span>
+                                领地保护
+                            </h3>
+                            <p class="text-light/80 ml-8">
+                                尊重其他玩家的领地，未经允许不得进入、破坏或窃取他人领地内的物品。使用/res命令可以管理你自己的领地。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-dark/60 rounded-lg p-5 border border-primary/20">
+                            <h3 class="font-bold mb-2 flex items-center">
+                                <span class="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-sm mr-2">2</span>
+                                禁止 griefing
+                            </h3>
+                            <p class="text-light/80 ml-8">
+                                禁止恶意破坏他人建筑、设施或地形，包括但不限于拆毁、焚烧、水淹等行为。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-dark/60 rounded-lg p-5 border border-primary/20">
+                            <h3 class="font-bold mb-2 flex items-center">
+                                <span class="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-sm mr-2">3</span>
+                                经济规则
+                            </h3>
+                            <p class="text-light/80 ml-8">
+                                禁止利用漏洞刷取货币或物品，禁止哄抬物价或进行欺诈交易。所有交易应基于公平自愿的原则。
+                            </p>
+                        </div>
+                        
+                        <div class="bg-dark/60 rounded-lg p-5 border border-primary/20">
+                            <h3 class="font-bold mb-2 flex items-center">
+                                <span class="w-6 h-6 bg-primary rounded-full flex items-center justify-center text-sm mr-2">4</span>
+                                聊天规则
+                            </h3>
+                            <p class="text-light/80 ml-8">
+                                禁止在聊天中发送垃圾信息、重复内容、刷屏或无关链接。请使用文明用语，保持聊天环境友好。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+                        <i class="fa fa-gavel text-lg mr-2"></i> 处罚机制
+                    </h2>
+                    
+                    <div class="bg-dark/60 rounded-lg p-5 border border-primary/20 mb-6">
+                        <p class="text-light/80 mb-4">
+                            对于违反服务器规则的行为，管理员将根据情节严重程度采取相应处罚措施：
+                        </p>
+                        <ul class="space-y-3 ml-5">
+                            <li class="flex items-start">
+                                <i class="fa fa-comment text-secondary mt-1 mr-3"></i>
+                                <span><strong>警告</strong>：首次轻微违规将给予口头警告</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-microphone-slash text-secondary mt-1 mr-3"></i>
+                                <span><strong>禁言</strong>：多次轻微违规或中度违规将被禁言，时间从1小时到7天不等</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-clock-o text-secondary mt-1 mr-3"></i>
+                                <span><strong>临时封禁</strong>：严重违规将被临时封禁，时间从1天到30天不等</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-ban text-danger mt-1 mr-3"></i>
+                                <span><strong>永久封禁</strong>：极其严重的违规或多次严重违规将被永久封禁</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+                        <i class="fa fa-question-circle text-lg mr-2"></i> 申诉与帮助
+                    </h2>
+                    
+                    <div class="bg-dark/60 rounded-lg p-5 border border-primary/20">
+                        <p class="text-light/80 mb-4">
+                            如果你有任何疑问、需要帮助或想申诉处罚，可以通过以下方式联系管理员：
+                        </p>
+                        <ul class="space-y-3 ml-5">
+                            <li class="flex items-start">
+                                <i class="fa fa-comment text-primary mt-1 mr-3"></i>
+                                <span>在游戏内使用 /msg [管理员名称] 消息 发送私信</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-envelope text-primary mt-1 mr-3"></i>
+                                <span>发送邮件至：admin@wzy-server.com</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-comments text-primary mt-1 mr-3"></i>
+                                <span>加入我们的Discord服务器：discord.gg/wzyserver</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-flag text-primary mt-1 mr-3"></i>
+                                <span>在游戏内使用 /report 玩家名称 原因 举报违规行为</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark py-8 border-t border-primary/20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <img src="assets/images/logo.png" alt="WZY Server Logo" class="w-8 h-8 rounded-lg">
+                        <span class="font-minecraft text-primary text-sm">WZY Server</span>
+                    </div>
+                    <p class="text-light/60 text-sm mt-2">© 2023 WZY Server. 保留所有权利</p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="text-light/60 hover:text-primary transition-colors">
+                        <i class="fa fa-discord text-xl"></i>
+                    </a>
+                    <a href="#" class="text-light/60 hover:text-primary transition-colors">
+                        <i class="fa fa-qq text-xl"></i>
+                    </a>
+                    <a href="#" class="text-light/60 hover:text-primary transition-colors">
+                        <i class="fa fa-weixin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-6 pt-6 border-t border-primary/10 text-center text-light/50 text-sm">
+                <p>本服务器与Mojang AB无任何关联，Minecraft是Mojang AB的商标</p>
+                <div class="mt-2">
+                    <a href="admin/login.html" class="hover:text-primary transition-colors">管理员登录</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

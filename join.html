@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" type="logo" href="assets/images/logo.png"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的世界 WZY Server - 加入我们的冒险</title>
+    <!-- 引入外部资源 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#FFC107',
+                        dark: '#1E293B',
+                        light: '#F8FAFC',
+                        accent: '#8B5CF6',
+                        danger: '#EF4444',
+                    },
+                    fontFamily: {
+                        minecraft: ['"Press Start 2P"', 'cursive'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                },
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .text-shadow-lg {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            }
+            .bg-minecraft-pattern {
+                background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234caf50' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            }
+            .minecraft-border {
+                border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='75' height='100'%3E%3Cg fill='none' stroke='%234CAF50' stroke-width='2'%3E%3Cpath d='M1 1h73v98H1z'/%3E%3Cpath d='M8 8h59v84H8z'/%3E%3C/g%3E%3C/svg%3E") 25 stretch;
+                border-width: 8px;
+                border-style: solid;
+            }
+        }
+    </style>
+    
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-dark text-light bg-minecraft-pattern">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center bg-dark/80 backdrop-blur-md">
+            <div class="flex items-center space-x-2">
+                <img src="assets/images/logo.png" alt="WZY Server Logo" class="w-10 h-10 rounded-lg">
+                <span class="font-minecraft text-primary text-lg md:text-xl">WZY Server</span>
+            </div>
+            
+            <!-- 桌面导航 -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="font-medium text-primary transition-colors">首页</a>
+                <a href="about.html" class="font-medium text-light hover:text-primary transition-colors">关于我们</a>
+                <a href="features.html" class="font-medium text-light hover:text-primary transition-colors">特色玩法</a>
+                <a href="rules.html" class="font-medium text-light hover:text-primary transition-colors">服务器规则</a>
+                <a href="status.html" class="font-medium text-light hover:text-primary transition-colors">服务器状态</a>
+                <a href="join.html" class="bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded-md transition-all transform hover:scale-105">加入我们</a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-light text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark/95 backdrop-blur-md">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html" class="font-medium text-primary transition-colors py-2">首页</a>
+                <a href="about.html" class="font-medium text-light hover:text-primary transition-colors py-2">关于我们</a>
+                <a href="features.html" class="font-medium text-light hover:text-primary transition-colors py-2">特色玩法</a>
+                <a href="rules.html" class="font-medium text-light hover:text-primary transition-colors py-2">服务器规则</a>
+                <a href="status.html" class="font-medium text-light hover:text-primary transition-colors py-2">服务器状态</a>
+                <a href="join.html" class="bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded-md text-center transition-all">加入我们</a>
+            </div>
+        </div>
+    </header>
+    <!-- 加入我们 -->
+    <section id="join" class="py-20 bg-dark relative overflow-hidden">
+        <!-- 背景装饰 -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-5">
+            <div class="absolute top-10 left-10 w-40 h-40 block bg-primary rounded-full"></div>
+            <div class="absolute bottom-10 right-10 w-60 h-60 block bg-secondary rounded-full"></div>
+            <div class="absolute top-1/2 left-1/3 w-30 h-30 block bg-accent rounded-full"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-minecraft text-[clamp(1.5rem,3vw,2.5rem)] text-primary mb-4">加入我们</h2>
+                <p class="max-w-2xl mx-auto text-light/70">只需简单几步，即可加入我们的我的世界服务器</p>
+                <div class="w-32 h-1 bg-primary mx-auto mt-4"></div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-dark/60 rounded-lg overflow-hidden border border-primary/20">
+                    <div class="grid md:grid-cols-2">
+                        <div class="p-8 flex flex-col justify-center">
+                            <h3 class="text-2xl font-bold mb-6 text-secondary">如何加入</h3>
+                            <div class="space-y-6">
+                                <div class="flex">
+                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mr-4">
+                                        <span class="font-bold text-primary">1</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1">请先下载radmin VPN内网穿透软件</h4>
+                                        <p class="text-sm text-light/70">访问官方网站下载并安装最新版本的Radmin VPN软件，用于连接我们的私有服务器网络</p>
+                                        <p class="text-sm text-light/70 mt-1">网络名称：WZY服务器公测1（备用：WZY服务器公测2）</p>
+                                        <p class="text-sm text-light/70">密码：123456</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mr-4">
+                                        <span class="font-bold text-primary">2</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1">确保你有我的世界</h4>
+                                        <p class="text-sm text-light/70">我们支持1.21.1版本，请确保你的游戏版本正确</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mr-4">
+                                        <span class="font-bold text-primary">3</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1">添加服务器</h4>
+                                        <p class="text-sm text-light/70">在游戏中点击"添加服务器"，输入我们的服务器地址</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mr-4">
+                                        <span class="font-bold text-primary">4</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1">加入游戏</h4>
+                                        <p class="text-sm text-light/70">点击"加入服务器"，开始你的冒险之旅</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0 mr-4">
+                                        <span class="font-bold text-primary">5</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1">加入社区</h4>
+                                        <p class="text-sm text-light/70">加入我们的Discord社区，获取最新消息和活动信息</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-dark/80 p-8 border-t md:border-t-0 md:border-l border-primary/20">
+                            <h3 class="text-2xl font-bold mb-6 text-secondary">服务器信息</h3>
+                            <div class="mb-6">
+                                <label class="block text-sm text-light/70 mb-2">服务器地址</label>
+                                <div class="flex">
+                                    <input type="text" value="26.86.3.197:8888" readonly="" class="bg-dark/60 border border-primary/30 rounded-l-md px-4 py-2 w-full focus:outline-none focus:border-primary">
+                                    <button id="copy-ip" class="bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded-r-md transition-colors">
+                                        <i class="fa fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-sm text-light/70 mb-2">端口</label>
+                                <input type="text" value="8888" readonly="" class="bg-dark/60 border border-primary/30 rounded-md px-4 py-2 w-full focus:outline-none focus:border-primary">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-sm text-light/70 mb-2">版本</label>
+                                <input type="text" value="1.21.1" readonly="" class="bg-dark/60 border border-primary/30 rounded-md px-4 py-2 w-full focus:outline-none focus:border-primary">
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-sm text-light/70 mb-2">Discord社区</label>
+                                <a href="#" class="flex items-center bg-[#5865F2] hover:bg-[#4752C4] text-white px-4 py-2 rounded-md transition-colors">
+                                    <i class="fa fa-discord mr-2"></i>
+                                    <span>加入Discord</span>
+                                </a>
+                            </div>
+                            <div>
+                                <a href="#" class="w-full block text-center bg-primary hover:bg-primary/80 text-white px-4 py-3 rounded-md transition-colors font-medium">
+                                    查看详细教程
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>

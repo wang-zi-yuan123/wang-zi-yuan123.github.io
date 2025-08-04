@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.png"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>特色玩法 - WZY Server</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4CAF50',
+                        secondary: '#FFC107',
+                        dark: '#1E293B',
+                        light: '#F8FAFC',
+                        accent: '#8B5CF6',
+                    },
+                    fontFamily: {
+                        minecraft: ['"Press Start 2P"', 'cursive'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+            .bg-minecraft-pattern {
+                background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234caf50' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            }
+        }
+    </style>
+    
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body class="bg-dark text-light bg-minecraft-pattern">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full z-50 transition-all duration-300">
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center bg-dark/80 backdrop-blur-md">
+            <div class="flex items-center space-x-2">
+                <img src="assets/images/logo.png" alt="WZY Server Logo" class="w-10 h-10 rounded-lg">
+                <span class="font-minecraft text-primary text-lg md:text-xl">WZY Server</span>
+            </div>
+            
+            <!-- 桌面导航 -->
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="font-medium text-light hover:text-primary transition-colors">首页</a>
+                <a href="about.html" class="font-medium text-light hover:text-primary transition-colors">关于我们</a>
+                <a href="features.html" class="font-medium text-primary transition-colors">特色玩法</a>
+                <a href="rules.html" class="font-medium text-light hover:text-primary transition-colors">服务器规则</a>
+                <a href="status.html" class="font-medium text-light hover:text-primary transition-colors">服务器状态</a>
+                <a href="join.html" class="bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded-md transition-all transform hover:scale-105">加入我们</a>
+            </div>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menu-toggle" class="md:hidden text-light text-2xl">
+                <i class="fa fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark/95 backdrop-blur-md">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html" class="font-medium text-light hover:text-primary transition-colors py-2">首页</a>
+                <a href="about.html" class="font-medium text-light hover:text-primary transition-colors py-2">关于我们</a>
+                <a href="features.html" class="font-medium text-primary transition-colors py-2">特色玩法</a>
+                <a href="rules.html" class="font-medium text-light hover:text-primary transition-colors py-2">服务器规则</a>
+                <a href="status.html" class="font-medium text-light hover:text-primary transition-colors py-2">服务器状态</a>
+                <a href="join.html" class="bg-primary hover:bg-primary/80 text-white px-4 py-2 rounded-md text-center transition-all">加入我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 页面标题 -->
+    <section class="relative py-24 bg-dark">
+        <div class="absolute inset-0 z-0">
+            <img src="assets/images/banner1.jpg" alt="我的世界背景" class="w-full h-full object-cover opacity-20">
+            <div class="absolute inset-0 bg-gradient-to-b from-dark/90 to-dark"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <h1 class="font-minecraft text-[clamp(1.8rem,4vw,3rem)] text-primary mb-4 text-shadow">特色玩法</h1>
+            <p class="text-light/70 max-w-3xl">探索WZY Server提供的多样化游戏模式和特色内容</p>
+        </div>
+    </section>
+
+    <!-- 玩法分类标签 -->
+    <section class="py-6 bg-dark/80 border-y border-primary/20">
+        <div class="container mx-auto px-4">
+            <div class="flex overflow-x-auto pb-2 scrollbar-thin hide-scrollbar">
+                <div class="flex space-x-2 md:justify-center">
+                    <button class="feature-tab px-4 py-2 bg-primary text-white rounded-md whitespace-nowrap" data-tab="survival">生存冒险</button>
+                    <button class="feature-tab px-4 py-2 bg-dark/60 hover:bg-primary/20 text-light/80 rounded-md whitespace-nowrap" data-tab="creative">创意建造</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 玩法内容 -->
+    <section class="py-16 bg-dark">
+        <div class="container mx-auto px-4">
+            <!-- 生存冒险 -->
+            <div class="feature-content" id="survival-content">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mb-16">
+                    <div class="lg:col-span-2">
+                        <h2 class="text-2xl font-bold mb-6 text-primary">生存冒险</h2>
+                        <p class="text-light/80 mb-4">
+                            我们的生存模式保留了原汁原味的 Minecraft 生存体验，同时添加了许多独特的自定义内容，让你的生存之旅更加精彩。
+                        </p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>自定义生成的世界，包含独特的地形和结构</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>平衡的经济系统，玩家可以通过多种方式获取资源</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>独特的任务系统，完成任务获取稀有奖励</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>自定义怪物和BOSS，增加挑战难度</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>玩家领地系统，保护你的建筑和物品</span>
+                            </li>
+                        </ul>
+                        <a href="join.html" class="inline-block bg-primary hover:bg-primary/80 text-white px-5 py-2 rounded-md transition-colors">
+                            开始冒险 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    <div class="rounded-lg overflow-hidden border border-primary/20">
+                        <img src="assets/images/minecraft1.jpg" alt="生存冒险模式" class="w-full h-auto">
+                    </div>
+                </div>
+                
+                <div class="bg-dark/60 rounded-lg p-6 border border-primary/20">
+                    <h3 class="font-bold text-lg mb-4 flex items-center">
+                        <i class="fa fa-info-circle text-primary mr-2"></i> 生存小贴士
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="text-light/80 text-sm mb-3">
+                                新手玩家出生后会获得一个新手礼包，包含基本生存工具。建议先收集木材，制作基础工具，然后建造一个简单的庇护所。
+                            </p>
+                            <p class="text-light/80 text-sm">
+                                服务器有日夜更替，夜晚会生成强大的怪物，确保在天黑前做好准备。你可以通过/help命令查看所有可用指令。
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-light/80 text-sm mb-3">
+                                你可以通过完成新手任务快速获取资源，使用/quests命令查看当前可接任务。与其他玩家组队冒险会更加安全和有趣。
+                            </p>
+                            <p class="text-light/80 text-sm">
+                                建立领地可以保护你的财产，使用/res create 领地名称 命令创建你的第一个领地，初始领地有一定大小限制。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 创意建造 -->
+            <div class="feature-content hidden" id="creative-content">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center mb-16">
+                    <div class="lg:col-span-2">
+                        <h2 class="text-2xl font-bold mb-6 text-primary">创意建造</h2>
+                        <p class="text-light/80 mb-4">
+                            在创意模式中，你将拥有无限的资源和飞行能力，可以尽情发挥你的想象力，建造出令人惊叹的作品。
+                        </p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>无限资源和飞行能力，专注于建造体验</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>定期举办建筑比赛，获胜者可获得丰厚奖励</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>优秀作品将被展示在服务器主城，供所有玩家参观</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>支持团队合作建造，共同完成大型项目</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check text-primary mt-1 mr-3"></i>
+                                <span>提供多种建筑辅助工具和命令</span>
+                            </li>
+                        </ul>
+                        <a href="join.html" class="inline-block bg-primary hover:bg-primary/80 text-white px-5 py-2 rounded-md transition-colors">
+                            开始建造 <i class="fa fa-arrow-right ml-1"></i>
+                        </a>
+                    </div>
+                    <div class="rounded-lg overflow-hidden border border-primary/20">
+                        <img src="assets/images/minecraft2.jpg" alt="创意建造模式" class="w-full h-auto">
+                    </div>
+                </div>
+                
+                <div class="bg-dark/60 rounded-lg p-6 border border-primary/20">
+                    <h3 class="font-bold text-lg mb-4 flex items-center">
+                        <i class="fa fa-trophy text-secondary mr-2"></i> 近期建筑比赛
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="border border-primary/20 rounded-lg p-4">
+                            <h4 class="font-bold mb-2">未来城市建筑大赛</h4>
+                            <p class="text-light/70 text-sm mb-3">
+                                建造你想象中的未来城市，展示科技与自然的和谐共存。
+                            </p>
+                            <div class="flex justify-between text-sm">
+                                <span><i class="fa fa-calendar text-primary mr-1"></i> 截止日期: 2023-12-31</span>
+                                <a href="#" class="text-primary hover:underline">了解详情</a>
+                            </div>
+                        </div>
+                        <div class="border border-primary/20 rounded-lg p-4">
+                            <h4 class="font-bold mb-2">幻想城堡设计赛</h4>
+                            <p class="text-light/70 text-sm mb-3">
+                                设计并建造一座梦幻般的城堡，可以是童话风格、奇幻风格或中世纪风格。
+                            </p>
+                            <div class="flex justify-between text-sm">
+                                <span><i class="fa fa-calendar text-primary mr-1"></i> 截止日期: 2024-01-15</span>
+                                <a href="#" class="text-primary hover:underline">了解详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+    <!-- 页脚 -->
+    <footer class="bg-dark py-8 border-t border-primary/20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <img src="assets/images/logo.png" alt="WZY Server Logo" class="w-8 h-8 rounded-lg">
+                        <span class="font-minecraft text-primary text-sm">WZY Server</span>
+                    </div>
+                    <p class="text-light/60 text-sm mt-2">© 2023 WZY Server. 保留所有权利</p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="text-light/60 hover:text-primary transition-colors">
+                        <i class="fa fa-discord text-xl"></i>
+                    </a>
+                    <a href="#" class="text-light/60 hover:text-primary transition-colors">
+                        <i class="fa fa-qq text-xl"></i>
+                    </a>
+                    <a href="#" class="text-light/60 hover:text-primary transition-colors">
+                        <i class="fa fa-weixin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-6 pt-6 border-t border-primary/10 text-center text-light/50 text-sm">
+                <p>本服务器与Mojang AB无任何关联，Minecraft是Mojang AB的商标</p>
+                <div class="mt-2">
+                    <a href="admin/login.html" class="hover:text-primary transition-colors">管理员登录</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // 玩法标签切换功能
+        document.querySelectorAll('.feature-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 移除所有标签的活跃状态
+                document.querySelectorAll('.feature-tab').forEach(t => {
+                    t.classList.remove('bg-primary', 'text-white');
+                    t.classList.add('bg-dark/60', 'hover:bg-primary/20', 'text-light/80');
+                });
+                
+                // 设置当前标签为活跃状态
+                this.classList.remove('bg-dark/60', 'hover:bg-primary/20', 'text-light/80');
+                this.classList.add('bg-primary', 'text-white');
+                
+                // 隐藏所有内容
+                document.querySelectorAll('.feature-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                // 显示对应内容
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-content`).classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
